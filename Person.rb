@@ -1,12 +1,16 @@
 require 'rubygems'
 require 'sinatra'
 
- class Person                
+
 
  #  include Comparable        
  #  @@count_obj = 0           
-                             
-                             
+
+
+    get '/key' do   
+       
+ class Person                
+
    def initialize(name, age, sex) 
                              
      @name, @age, @sex = name, age, sex 
@@ -39,10 +43,14 @@ require 'sinatra'
           Person.new("Red", 22,'M')]
                       
  puts group.sort
+greeting = Person.initialize
+
 File.new('Person.txt', 'w')
 File.open('Person.txt', 'a') {|file|
    file.puts group.sort
      } 
+
+end
 
 
 #end

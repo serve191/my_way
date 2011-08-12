@@ -2,7 +2,7 @@ require 'rubygems'
 require 'require_relative' 
 require 'sinatra'
 require 'erb'
-
+require 'Person.rb'
   module Gothonweb
 
 class MyApp < Sinatra::Base
@@ -40,3 +40,9 @@ get '/foo' do
     request.path              # "/example/foo"
     request.ip                # IP-адрес клиента
   end
+
+
+
+
+
+
