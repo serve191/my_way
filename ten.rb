@@ -11,11 +11,33 @@ def select_random some_list
     some_list[rand(some_list.length)]
 end
 
+class Module
+  # First using define_method
+  def attr1(symbol)
+    instance_var = ('@' + symbol.to_s)
+    define_method(symbol) { instance_variable_get(instance_var) }
+    define_method(symbol.to_s + "=") { |val| instance_variable_set(instance_var, val) }
+  end
 
-
-while
+  # Second using module_eval
+  def attr2(symbol)
+    module_eval "def #{symbol}; @#{symbol}; end"
+    module_eval "def #{symbol}=(val); @#{symbol} = val; end"
+  end
 end
-ifelse?
+
+class Person
+  attr1 :name
+  attr2 :phone
+end
+
+person = Person.new
+person.name = 'John Smith'
+person.phone = '555-2344'
+person # returns
+
+
+
 
 
 
@@ -48,7 +70,7 @@ o = Hash["name" => "katrin", "age" => "28","sex" => "w"]
 
 
 
-get '/bik' do
+get '/xfiles' do
      greeting =  people[:nickname]
      @name = 'name'
      @age = 'age'
@@ -98,9 +120,17 @@ get '/bik' do
 @raw016 = o["name"]
      @raw116 = o["age"]
      @raw216 = o["sex"]
+
+
+
+
+
+
+
+
      
      erb :index, :locals => {:greeting => greeting}
-     
+      
 
    end
 
