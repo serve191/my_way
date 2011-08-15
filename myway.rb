@@ -1,9 +1,11 @@
 require 'rubygems'
-require 'require_relative' 
+require 'require_relative'
 require 'sinatra'
 require 'erb'
 require 'Person.rb'
-  module Gothonweb
+
+
+module Gothonweb
 
 class MyApp < Sinatra::Base
       # Я в области видимости приложения!
@@ -30,16 +32,6 @@ class MyApp < Sinatra::Base
    end
  
  end
-
-get '/foo' do
-    request.body              # тело запроса, посланное клиентом (см. ниже)
-    request.path_info         # "/foo"
-    request.port              # 80
-    request.host              # "example.com"
-    request.url               # "http://example.com/example/foo"
-    request.path              # "/example/foo"
-    request.ip                # IP-адрес клиента
-  end
 
 
 

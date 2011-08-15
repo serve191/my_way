@@ -1,10 +1,7 @@
+
 require 'rubygems'
 require 'sinatra'
 
-
-
- #  include Comparable        
- #  @@count_obj = 0           
 
 
     get '/key' do   
@@ -14,7 +11,7 @@ require 'sinatra'
    def initialize(name, age, sex) 
                              
      @name, @age, @sex = name, age, sex 
-#     @@count_obj += 1
+
    end
  
    def <=>(person)           
@@ -51,6 +48,13 @@ File.open('Person.txt', 'a') {|file|
      } 
 
 end
+
+
+  post '/loto' do
+
+end
+
+
 
 
 #end
