@@ -13,6 +13,25 @@ DB << {:name => 'Viktor', :tags => ['Ruby', 'Java']}
 get '/' do
   @users = DB
 
+  if params[:search]
+    if params[:search][:name] != ""
+      raise
+      @users = @users.find_all{|u| u[:name] == params[:search][:name]} 
+    end
+
+    if params[:search][:age] != ""
+      @users = @users.find_all{|u| 
+        if params[:search][:age_type] == '>'
+          u[:age].to_i > params[:search][:age].to_i
+        elsif params[:search][:age_type] == '<'
+          u[:age].to_i < params[:search][:age].to_i
+        else
+          u[:age] == params[:search][:age]
+        end
+      } 
+    end
+  end
+
   erb :'note_book/index'
 end
 
@@ -28,5 +47,7 @@ post '/new' do
   p params[:user][:name]
   p "-" * 100
 
-  redirect '/' 
+  DB << params[:user]
+
+  redirect '/'
 end

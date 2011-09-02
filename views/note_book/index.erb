@@ -2,11 +2,25 @@
   <h4> It's all about hack :) </h4>
 </p>
 
+<div id="search">
+  <form action="/" method="GET">
+    Name:
+    <input type="text" name="search[name]"/>
+    Age:
+    Старше <input type="radio" name="search[age_type]" value=">" />
+    <input type="text" name="search[age]"/>
+    Младше <input type="radio" name="search[age_type]" value="<" />
+   
+    <input type="submit" value="Search"/>
+  </form>
+</div>
+
 <table>
   <tr>
     <th>Name</th>
     <th>Sex</th>
     <th>Tags</th>
+    <th>Age</th>
   </tr>
 
   <% @users.each do |user| %>
@@ -14,6 +28,7 @@
       <td> <%= user[:name] %>         </td>
       <td> <%= user[:sex] %>          </td>
       <td> <%= user[:tags].inspect %> </td>
+      <td> <%= user[:age] %>          </td>
     </tr>
   <% end %>
 </table>
