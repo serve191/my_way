@@ -2,20 +2,23 @@ require 'rubygems'
 require 'sinatra'
 require "sinatra/reloader"
 require 'erb'
+require 'yaml'
 
 enable :logging, :dump_errors, :raise_errors
 
 DB = []
-DB << {:name => 'Anton', :sex => 'M',  :tags => ['Haker', 'joker']}
-DB << {:name => 'Viktor', :tags => ['Ruby', 'Java']}
 
+p "start"
+f = File.open('db.txt')
+if 0 < (data = f.read).length 
+  DB += YAML::load(data)
+end
 
 get '/' do
   @users = DB
 
   if params[:search]
     if params[:search][:name] != ""
-      raise
       @users = @users.find_all{|u| u[:name] == params[:search][:name]} 
     end
 
@@ -47,7 +50,10 @@ post '/new' do
   p params[:user][:name]
   p "-" * 100
 
-  DB << params[:user]
+  DB << params[:user] 
+  f = File.open('db.txt', "w")
+  f.write(DB.to_yaml)
+  f.close
 
   redirect '/'
 end

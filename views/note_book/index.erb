@@ -25,10 +25,10 @@
 
   <% @users.each do |user| %>
     <tr>
-      <td> <%= user[:name] %>         </td>
-      <td> <%= user[:sex] %>          </td>
-      <td> <%= user[:tags].inspect %> </td>
-      <td> <%= user[:age] %>          </td>
+      <td> <%= user["name"] %>         </td>
+      <td> <%= user["sex"] %>          </td>
+      <td> <%= user["tags"].inspect %> </td>
+      <td> <%= user["age"] %>          </td>
     </tr>
   <% end %>
 </table>
