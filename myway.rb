@@ -2,39 +2,31 @@ require 'rubygems'
 require 'require_relative'
 require 'sinatra'
 require 'erb'
-require 'Person.rb'
+require './quote'
+require 'data_mapper'
 
+DataMapper::setup(:default, "sqlite3://#{Dir.pwd}/stone.db")
 
-module Gothonweb
+DataMapper.finalize
+Quote.auto_upgrade!
 
 class MyApp < Sinatra::Base
-      # Я в области видимости приложения!
-      set :foo, 42
-      foo # => 42
-      
-      get '/foo' do
-        # Я больше не в области видимости приложения!
-      end
-    end
-  
+    set :static, true
+    set :public, File.dirname(__FILE__) + '/public' 
+
     get '/' do
-      greeting = "Hello, World!"
-      erb :index, :locals => {:greeting => greeting}
+      send_file 'public/index.html'
    end
-   
-   get '/hello' do
-     erb :hello_form
+
+   post '/' do
+       p 'DEBUG - ' * 10
+       p params[:quote]
+       p params[:source_url]
+
+       quote = Quote.new(:body => params[:quote], :source_url => params[:source_url])
+       quote.save
    end
- 
-   post '/hello' do
-     greeting = "#{params[:greet] || "Hello"}, #{params[:name] || "Nobody"}"
-     erb :index, :locals => {:greeting => greeting} 
-   end
- 
- end
 
+end
 
-
-
-
-
+MyApp.run!
