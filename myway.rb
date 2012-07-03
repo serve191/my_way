@@ -62,10 +62,4 @@ class MyApp < Sinatra::Base
   end
 end
 
-app = Rack::Builder.app do
-   use Rack::CommonLogger
-   run lambda { |env| [200, {'Content-Type' => 'text/plain'}, 'OK'] }
-end
-
-
 MyApp.run! :port => 8000
