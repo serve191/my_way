@@ -68,9 +68,4 @@ app = Rack::Builder.app do
 end
 
 
-Rack::Handler::WEBrick.run app, {'Port' => 8080}
-
-
-myapp = MyApp.new
-
-run app
+MyApp.run! :port => 8000
