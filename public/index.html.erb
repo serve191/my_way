@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" media="all" href="/css/app.css" />
+    </head>
+
+    <body>
+        Save this Bookmark
+        <a href='javascript:;var script = document.createElement("script"); script.src="http://localhost:8000/widget?"+Math.random(); document.body.appendChild(script); void(0);'>Save Quote</a>
+
+        <ul>
+        <% @pages.each do |q| %>
+            <li><a href="/page?id=<%= q.id %>"><%= q.title %></a></li>
+        <% end %>
+        </ul>
+    </body>
+</html>
+</html>
