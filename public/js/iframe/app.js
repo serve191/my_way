@@ -18,9 +18,9 @@
 //l = console.log;
 
 window.onload = function() {
-//  window.addEventListener('message', handler, false);
+  window.addEventListener('message', handler, false);
 }
 
-//function handler(e) {
-//  console.log('got data', e.data);
-//}
+function handler(e) {
+  console.log('got data', e.data);
+}

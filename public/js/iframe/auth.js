@@ -17,7 +17,7 @@ function auth(login, pass) {
   fd.append('user[login]', login);
   fd.append('user[password]', pass);
 
-  http.open("POST", 'http://localhost:8000/auth?callback=data', true);
+  http.open("POST", 'http://reckoning.me/auth?callback=data', true);
 
   http.onreadystatechange = function() {
       if(http.readyState == 4 && http.status == 200) {

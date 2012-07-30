@@ -2,19 +2,19 @@ var head = document.getElementsByTagName('head')[0],
     script  = document.createElement('script'),
     script1 = document.createElement('script');
 
-script.src = "http://localhost:8000/js/rangy-core.js";
+script.src = "http://reckoning.me/js/rangy-core.js";
 script.onload = function() {
   rangy.init();
 }
 
 head.appendChild(script);
 
-if (! (document.location.host == "localhost:8000")) {
+if (! (document.location.host == "reckoning.me")) {
   sendPage();
 }
 
 function renderLoginBox(id) {
-    var url = 'http://localhost:8000/iframe?id='+id,
+    var url = 'http://reckoning.me/iframe?id='+id,
         box   = "<iframe id='QuotesSpaceIFrame' width='100%' height='100%' src="+url+"></iframe>";
 
     createDivs(box);
@@ -24,17 +24,16 @@ function renderLoginBox(id) {
 window.addEventListener('mouseup', function() {
   var iframe   = document.getElementById('QuotesSpaceIFrame'),
       anchorId = Math.round( Math.random() * 100000 ),
-      //sel = rangy.getSelection(),
-      sel = document.getSelection(),
+      sel = rangy.getSelection(),
+      //sel = document.getSelection(),
       data = {
-        //selection: rangy.serializeSelection(),
-        text: sel.toString()
+        selection: rangy.serializeSelection(),
       };
 
-    //highlightText(sel, sel.getRangeAt(0));
-    //iframe.contentWindow.postMessage(data, '*');
+    highlightText(sel, sel.getRangeAt(0));
+    iframe.contentWindow.postMessage(data, '*');
 
-    //sel.removeAllRanges();
+    sel.removeAllRanges();
 });
 
 function sendPage() {
@@ -45,7 +44,7 @@ function sendPage() {
         html:  document.getElementsByTagName('html')[0].innerHTML
     };
 
-    var url = "http://localhost:8000/";
+    var url = "http://reckoning.me/";
     var http = new XMLHttpRequest();
     http.open("POST", url, true);
 

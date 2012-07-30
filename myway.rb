@@ -1,5 +1,5 @@
 require 'rubygems'
-require 'require_relative'
+#require 'require_relative'
 require 'sinatra'
 require 'data_mapper'
 require 'active_support/secure_random'
